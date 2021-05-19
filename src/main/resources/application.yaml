@@ -10,12 +10,20 @@ spring.output.ansi.enabled: detect
 
 server:
   port: 8080
+  servlet:
+    context-path: /lodgelibrary
 
 spring:
+  thymeleaf:
+    cache: true
+    servlet:
+      produce-partial-output-while-processing: true
+    enable-spring-el-compiler: true
+
   datasource:
-    url: ${DATASOURCE_URL:jdbc:mysql://localhost:3306/library}
-    username: ${DATASOURCE_USERNAME:root}
-    password: ${DATASOURCE_PASSWORD:fossil}
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
 
     hikari:
       login-timeout: 2500

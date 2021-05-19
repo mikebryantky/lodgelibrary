@@ -27,4 +27,9 @@ public class IndexController {
 
         return "index";
     }
+
+    @GetMapping("notyet")
+    public String notyet(Model model) {
+        return "notyet";
+    }
 }

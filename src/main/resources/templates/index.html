@@ -1,43 +1,85 @@
-<!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Spring Boot Thymeleaf Hello World Example</title>
-    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lodge Library</title>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">MikeBryant.com</a>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"
+          rel="stylesheet">
+
+    <link href="css/main.css"
+          rel="stylesheet">
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Lodge Library</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{books}">Books</a>
+            </li>
+
+            <ul sec:authorize="hasRole('ROLE_ADMIN')" class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Administration
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" th:href="@{/notyet}">Currently On Loan</a></li>
+                        <li><a class="dropdown-item" th:href="@{/notyet}">Items Past Due</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" th:href="@{/notyet}">Users</a></li>
+                        <li><a class="dropdown-item" th:href="@{/notyet}">Genres</a></li>
+                        <li><a class="dropdown-item" th:href="@{/notyet}">Add Book</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <a th:href="@{/logout}" class="btn btn-outline-secondary" role="button">
+                Logout <span th:text ="${#authentication.getName()}"></span>
+            </a>
+        </div>
+    </div>
 </nav>
 
-<main role="main" class="container">
-    <div class="starter-template">
-        <h1>Spring Boot Thymeleaf Hello world</h1>
-        <span th:text="'Hello, ' + ${message}"></span>
-
-        <div>
-            <table>
-                <tr>
-                    <th>Title</th>
-                    <th>Publisher</th>
-                    <th>Year</th>
-                </tr>
-                <tr th:each ="book : ${books}">
-                    <td th:utext="${book.title}"></td>
-                    <td th:utext="${book.genre.genreName}"></td>
-                    <td th:utext="${book.publisher}">...</td>
-                    <td th:utext="${book.publishYear}">...</td>
-                </tr>
-            </table>
-        </div>
-
-        <a th:href="@{/books}">Veiw Books</a>
+<main class="container">
+    <div class="row">
+        <h1>Hiya There!</h1>
+        <p>
+            Something really, truly amazing goes here...
+        </p>
     </div>
 </main>
 
-<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+<script>
+    $(document).ready(function () {
+        $('#bookList').DataTable({
+            "bPaginate": false,
+            "bLengthChange": false,
+        });
+    });
+
+</script>
 </body>
 </html>

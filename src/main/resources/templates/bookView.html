@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lodge Library</title>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+          integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"/>
+
+    <link href="css/main.css"
+          rel="stylesheet">
+</head>
+
+<body>
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="project-info-box mt-0">
+                <h2><span th:utext="${book.title}"></span></h2>
+                <h5><span th:utext="${book.subTitle}"></span></h5>
+                <p>&nbsp;</p>
+                <p><b>Genre:</b> <span th:utext="${book.genre.genreName}"></span></p>
+                <p><b>Publisher:</b> <span th:utext="${book.publisher}"></span></p>
+                <p><b>Published Year:</b> <span th:utext="${book.publishYear}"></span></p>
+                <p><b>ISBN:</b> <span th:utext="${book.isbn}"></span></p>
+                <p><b>Author(s):</b>
+                    <span th:each="bookAuthors : ${book.bookAuthors}">
+                        <a th:href="@{/notyet}">
+                            <span th:text="${bookAuthors.author.firstName} + ' ' + ${bookAuthors.author.lastName}"></span>
+                        </a>
+                        &nbsp;&nbsp;
+                    </span>
+                </p>
+                <p class="mb-0" th:utext="${book.synopsis}"></p>
+            </div>
+        </div><!-- / column -->
+
+        <div class="col-md-7">
+            <img th:src="@{/img/} + ${book.imageFile}" class="img-responsive" style="height: 65%; width: 65%;" >
+        </div><!-- / column -->
+    </div>
+</main>
+
+<script>
+    $(document).ready(function () {
+    });
+</script>
+</body>
+</html>
