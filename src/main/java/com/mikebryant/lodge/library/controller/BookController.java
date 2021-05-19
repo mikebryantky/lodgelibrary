@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -17,17 +16,17 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("bookView")
+    @GetMapping("book/view")
     public String getView(Model model, @RequestParam("uuid") String uuid) {
         model.addAttribute("book", bookService.get(uuid));
 
-        return "bookView";
+        return "book/view";
     }
 
-    @GetMapping("books")
+    @GetMapping("book/list")
     public String getAll(Model model) {
         model.addAttribute("books", bookService.getAll());
 
-        return "books";
+        return "book/list";
     }
 }

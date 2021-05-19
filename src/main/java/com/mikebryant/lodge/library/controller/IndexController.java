@@ -17,7 +17,7 @@ public class IndexController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/")
+    @GetMapping({"/", "home"})
     public String main(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
