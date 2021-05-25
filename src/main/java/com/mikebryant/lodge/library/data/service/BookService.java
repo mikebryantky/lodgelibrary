@@ -3,6 +3,7 @@ package com.mikebryant.lodge.library.data.service;
 import com.mikebryant.lodge.library.data.model.Book;
 import com.mikebryant.lodge.library.data.repository.BookRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -34,6 +36,9 @@ public class BookService {
     }
 
     public Book save(Book entity) {
+        if(StringUtils.isBlank(entity.getUuid())) {
+            entity.setUuid(UUID.randomUUID().toString());
+        }
         return bookRepository.save(entity);
     }
 

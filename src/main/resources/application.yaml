@@ -13,6 +13,10 @@ server:
   servlet:
     context-path: /lodgelibrary
 
+file:
+  image:
+    location: /opt/rednour/fileuploads/
+
 spring:
   thymeleaf:
     cache: true
@@ -36,4 +40,3 @@ spring:
   jpa:
     properties:
       show-sql: true
-

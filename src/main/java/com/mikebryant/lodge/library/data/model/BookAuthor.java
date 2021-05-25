@@ -14,9 +14,9 @@ public class BookAuthor {
 
     @ManyToOne
     @JoinColumn(name = "book_uuid", referencedColumnName = "uuid", nullable = false)
-    private Book book;
+    private Book book = new Book();
 
     @ManyToOne
     @JoinColumn(name = "author_uuid", referencedColumnName = "uuid", nullable = false)
-    private Author author;
+    private Author author = new Author();
 }

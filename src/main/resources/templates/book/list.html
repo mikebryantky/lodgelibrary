@@ -31,7 +31,10 @@
     </div>
 
     <div>
-        <a href="@{/logout}" class="btn btn-outline-primary" role="button" th:href="@{/notyet}">
+        <a th:href="@{/book/edit}"
+           class="btn btn-outline-primary"
+           sec:authorize="hasRole('ROLE_ADMIN')"
+           role="button">
             Add Book
         </a>
     </div>

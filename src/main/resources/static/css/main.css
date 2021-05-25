@@ -51,3 +51,7 @@ img {
 .project-info-box b, strong {
     font-weight: 700 !important;
 }
+
+.form-group {
+    padding-bottom: 15px;
+}

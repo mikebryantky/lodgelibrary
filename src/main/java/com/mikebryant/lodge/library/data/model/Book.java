@@ -46,5 +46,5 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "genre_uuid", referencedColumnName = "uuid", nullable = false)
-    private Genre genre;
+    private Genre genre = new Genre();
 }

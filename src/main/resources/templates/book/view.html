@@ -33,6 +33,15 @@
             <img th:src="@{/img/} + ${book.imageFile}" class="img-responsive" style="height: 65%; width: 65%;" >
         </div><!-- / column -->
     </div>
+
+    <div>
+        <a class="btn btn-outline-primary"
+           role="button"
+           sec:authorize="hasRole('ROLE_ADMIN')"
+           th:href="@{/book/edit(uuid=${book.uuid})}">
+            Edit
+        </a>
+    </div>
 </main>
 
 <script>
